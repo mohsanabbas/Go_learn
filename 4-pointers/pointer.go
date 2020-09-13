@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 type contactInfo struct {
-	address string
+	email   string
 	zipCode int
 }
 type person struct {
@@ -18,12 +18,14 @@ func main() {
 		firstName: "Mohsan",
 		lastName:  "Abbas",
 		contactInfo: contactInfo{
-			address: "avenida duque de caxia 61",
+			email:   "mohsanabbas@cvccorp.com.br",
 			zipCode: 01214100,
 		},
 	}
-	jim.print()
+	// jimPointer := &jim
+	// another way to get memory address of jim  but if we don't want use to use this approach all we need to do is in reciever use  pointer
 	jim.updateName("Ali")
+	jim.print()
 }
 
 func (p person) print() {
@@ -31,8 +33,11 @@ func (p person) print() {
 
 }
 
-// this will lead us to learn about go pointers, because when we are updating name which is not same memory location it will not effect the update.
-func (p person) updateName(newName string) {
-	p.firstName = newName
+// reciver will recieve a person struct and turn it into pointer which is reference to original jim struct,
+// In golang when we use reciever or functions it clones the data into different memory loation,
+// so to access that we use pointers which get the memory address and point to it's value
 
+func (p *person) updateName(newName string) {
+	(*p).firstName = newName
+	fmt.Printf("%+v", p)
 }
