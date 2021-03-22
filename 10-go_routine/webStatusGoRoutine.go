@@ -29,7 +29,7 @@ func main() {
 func checkStatus(link string, c chan string) {
 	res, err := http.Get(link) // we are sitting here waiting for response for each link get req we will solve this via Go routine and channels
 	if err != nil {
-		fmt.Println(link, "might fucked up")
+		fmt.Println(link, "might messed up")
 		c <- "might be down " // here we will emit message back in channel and will listen in main
 		return
 	}

@@ -33,7 +33,7 @@ func main() {
 func checkStatus(link string, c chan string) {
 	res, err := http.Get(link)
 	if err != nil {
-		fmt.Println(link, "might fucked up")
+		fmt.Println(link, "might messed up")
 		c <- link
 		return
 	}
